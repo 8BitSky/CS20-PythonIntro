@@ -1,0 +1,27 @@
+######################
+#Basic Toggle and For Loops
+#C Slater
+#Feb 29 2024
+#
+######################
+
+#Basic format for a toggle switch and for loop
+hamburger = True
+
+#Function returns toggle state to console/shell
+def hamburger_chewyness():
+    if hamburger:
+        print("Hamburger is tender and ready to eat")
+    else:
+        print("Hamburger is chewy and you are a bad cook")
+
+#Loop returns toggle state 60 times before exiting
+for x in range(60):
+    print("Minutes on Grill ", x)
+    hamburger_chewyness()
+    
+#Boolean toggle switch of current state
+hamburger = not hamburger
+#Final value of toggle state
+hamburger_chewyness()
+    
