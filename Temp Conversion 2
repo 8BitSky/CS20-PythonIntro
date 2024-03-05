@@ -1,0 +1,84 @@
+#############################
+# Tempature Conversions, Averaging, and Min/Max Calculator
+# C. Slater - Assignment
+# March 1, 2024
+#
+# Task: Take 7 temperature readings from the user (C, F or K)
+# and report back the average for the week and the min and max
+# values for the week in all temperature scales (C, F, and K).
+#
+# Use For Loops, Conditionals, lists, input, casting, comments and anything else
+# from CS20 that we have discussed in class to date.
+# FUNCTIONS ARE EXTREMELY IMPORTANT!
+#############################
+
+
+#1 Function to determine incoming unit of user input (C, F or K)
+def record_temp():
+    daily_temp = int(input("What is the current numeric temp value? "))
+    daily_unit = input("What is the current unit of the temp value? ")
+    temp_conversion(daily_temp, daily_unit)
+    
+#2 Function to convert value to all units required
+def temp_conversion(daily_temp, daily_unit):
+    if daily_unit.upper() == "C":
+        celcius_conversion(daily_temp)
+    if daily_unit.upper() == "F":
+        fahrenheit_conversion(daily_temp)
+    if daily_unit.upper() == "K":
+        kelvin_conversion(daily_temp)
+    
+def celcius_conversion(daily_temp):
+    daily_cel = daily_temp
+    daily_fah = ((daily_cel * (9/5)) + 32)
+    daily_kel = (daily_cel - 273.15)
+    temps_for_day = [daily_cel, daily_fah, daily_kel]
+
+    
+def fahrenheit_conversion(daily_temp):
+    daily_fah = daily_temp
+    daily_cel = (daily_fah - 32) * (5/9)
+    daily_kel = (daily_cel - 273.15)
+    temps_for_day = [daily_cel, daily_fah, daily_kel]
+
+
+def kelvin_conversion(daily_temp):
+    daily_kel = daily_temp
+    daily_cel = daily_kel + 273.15
+    daily_fah = ((daily_cel * (9/5)) + 32)
+    temps_for_day = [daily_cel, daily_fah, daily_kel]
+    
+    
+#3 Function to inform user of converted values?
+def report_values(daily_cel, daily_kel, daily_fah):
+    
+    
+#4 Collect temp for entire week!
+temps_for_day = [0,0,0] #Celcius, Fahr, Kelvin
+temps_for_week_C = [0,0,0,0,0,0,0]
+temps_for_week_F = [0,0,0,0,0,0,0]
+temps_for_week_K = [0,0,0,0,0,0,0]
+
+for x in range(7):
+    record_temp()
+    temps_for_week_C[x] = temps_for_day[0]
+    temps_for_week_F[x] = temps_for_day[1]
+    temps_for_week_K[x] = temps_for_day[2]
+
+
+#5 Calc Averages
+    
+#6 Min/Max
+
+
+
+
+
+
+
+
+
+
+
+
+
