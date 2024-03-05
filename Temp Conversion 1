@@ -1,0 +1,73 @@
+#############################
+# Tempature Conversions, Averaging, and Min/Max Calculator
+# C. Slater - Assignment
+# March 1, 2024
+#
+# Task: Take 7 temperature readings from the user (C, F or K)
+# and report back the average for the week and the min and max
+# values for the week in all temperature scales (C, F, and K).
+#
+# Use For Loops, Conditionals, lists, input, casting, comments and anything else
+# from CS20 that we have discussed in class to date.
+# FUNCTIONS ARE EXTREMELY IMPORTANT!
+#############################
+
+
+# Task 1
+# Create a function which asks the user for a numeric value for the current temperature and current unit of temperature (C, F, or K)
+
+def record_temp():
+    daily_temp = int(input("What is the current numeric temp value? "))
+    daily_unit = input("What is the current unit of the temp value? ")
+    temp_conversion(daily_temp, daily_unit)
+    
+#2 Function to convert value to all units required
+def temp_conversion(daily_temp, daily_unit):
+    if daily_unit.upper() == "C":
+        celcius_conversion(daily_temp)
+    if daily_unit.upper() == "F":
+        fahrenheit_conversion(daily_temp)
+    if daily_unit.upper() == "K":
+        kelvin_conversion(daily_temp)
+    
+def celcius_conversion(daily_temp):
+    daily_cel = daily_temp
+    daily_fah = ((daily_cel * (9/5)) + 32)
+    daily_kel = (daily_cel - 273.15)
+    report_values(daily_cel, daily_kel, daily_fah)
+    
+def fahrenheit_conversion(daily_temp):
+    daily_fah = daily_temp
+    daily_cel = (daily_fah - 32) * (5/9)
+    daily_kel = (daily_cel - 273.15)
+    report_values(daily_cel, daily_kel, daily_fah)
+
+def kelvin_conversion(daily_temp):
+    daily_kel = daily_temp
+    daily_cel = daily_kel + 273.15
+    daily_fah = ((daily_cel * (9/5)) + 32)
+    report_values(daily_cel, daily_kel, daily_fah)
+    
+#3 Function to inform user of converted values?
+def report_values(daily_cel, daily_kel, daily_fah):
+    print("Current Temp in C: ", round(daily_cel,2) )
+    print("Current Temp in F: ", round(daily_fah,2) )
+    print("Current Temp in K: ", round(daily_kel,2) )
+    
+
+record_temp()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
