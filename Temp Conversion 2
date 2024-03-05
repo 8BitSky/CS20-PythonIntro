@@ -33,38 +33,43 @@ def celcius_conversion(daily_temp):
     daily_fah = ((daily_cel * (9/5)) + 32)
     daily_kel = (daily_cel - 273.15)
     temps_for_day = [daily_cel, daily_fah, daily_kel]
-
+    store_values(temps_for_day)
     
 def fahrenheit_conversion(daily_temp):
     daily_fah = daily_temp
     daily_cel = (daily_fah - 32) * (5/9)
     daily_kel = (daily_cel - 273.15)
     temps_for_day = [daily_cel, daily_fah, daily_kel]
-
+    store_values(temps_for_day)
 
 def kelvin_conversion(daily_temp):
     daily_kel = daily_temp
     daily_cel = daily_kel + 273.15
     daily_fah = ((daily_cel * (9/5)) + 32)
     temps_for_day = [daily_cel, daily_fah, daily_kel]
-    
+    store_values(temps_for_day)
     
 #3 Function to inform user of converted values?
-def report_values(daily_cel, daily_kel, daily_fah):
+def store_values(temps_for_day):
+    print(temps_for_day)
+    current_daily_values = temps_for_day
     
+    
+current_daily_values = [0.0,0.0,0.0]
+temps_for_week_C = [0.0,0.0,0.0,0.0,0.0,0.0,0.0]
+temps_for_week_F = [0,0,0,0,0,0,0]
+temps_for_week_K = [0,0,0,0,0,0,0] 
     
 #4 Collect temp for entire week!
-temps_for_day = [0,0,0] #Celcius, Fahr, Kelvin
-temps_for_week_C = [0,0,0,0,0,0,0]
-temps_for_week_F = [0,0,0,0,0,0,0]
-temps_for_week_K = [0,0,0,0,0,0,0]
 
-for x in range(7):
+
+for x in range(2):
+    print("Day " + str(x) )
     record_temp()
-    temps_for_week_C[x] = temps_for_day[0]
-    temps_for_week_F[x] = temps_for_day[1]
-    temps_for_week_K[x] = temps_for_day[2]
-
+    temps_for_week_C[x]= current_daily_values[0]
+    temps_for_week_F[x]= current_daily_values[1]
+    temps_for_week_K[x]= current_daily_values[2]
+    print(temps_for_week_C)
 
 #5 Calc Averages
     
