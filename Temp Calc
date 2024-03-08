@@ -1,0 +1,113 @@
+#############################
+# Tempature Conversions, Averaging, and Min/Max Calculator
+# C. Slater - Assignment
+# March 1, 2024
+#
+# Task: Take 7 temperature readings from the user (C, F or K)
+# and report back the average for the week and the min and max
+# values for the week in all temperature scales (C, F, and K).
+#
+# Use For Loops, Conditionals, lists, input, casting, comments and anything else
+# from CS20 that we have discussed in class to date.
+# FUNCTIONS ARE EXTREMELY IMPORTANT!
+#############################
+
+
+#1 Function to determine incoming unit of user input (C, F or K)
+def record_temp():
+    daily_temp = int(input("What is the current numeric temp value? "))
+    daily_unit = input("What is the current unit of the temp value? ")
+    return [daily_temp, daily_unit]
+    
+#2 Function to convert value to all units required
+def temp_conversion(daily_temp_info):
+    daily_temp = daily_temp_info[0]
+    daily_unit = daily_temp_info[1]
+    if daily_unit.upper() == "C":
+        return celcius_conversion(daily_temp)
+    if daily_unit.upper() == "F":
+        return fahrenheit_conversion(daily_temp)
+    if daily_unit.upper() == "K":
+        return kelvin_conversion(daily_temp)
+    
+def celcius_conversion(daily_temp):
+    current_temps = [0,0,0]
+    current_temps[0] = daily_temp
+    current_temps[1] = ((daily_temp * (9/5)) + 32)
+    current_temps[2] = (daily_temp - 273.15)
+    return current_temps
+    
+    
+def fahrenheit_conversion(daily_temp):
+    current_temps = [0,0,0]
+    current_temps[0] = (daily_temp - 32) * (5/9)
+    current_temps[1] = daily_temp
+    current_temps[2] = (daily_temp - 273.15)
+    return current_temps
+
+def kelvin_conversion(daily_temp):
+    current_temps = [0,0,0]
+    current_temps[0] = daily_temp + 273.15 
+    current_temps[1] = ((daily_temp * (9/5)) + 32) 
+    current_temps[2] = daily_temp
+    return current_temps
+    
+def calc_average(temps_for_week):
+    sum_of_temps = 0
+    list_length = len(temps_for_week)
+    for x in range(list_length):
+        sum_of_temps = sum_of_temps + temps_for_week[x]
+    average = round(float( sum_of_temps / list_length ),1)         
+    return average
+    
+def find_min_max(temps_for_week):
+    sorted_temps = temps_for_week
+    sorted_temps.sort()
+    list_length = len(sorted_temps)
+    min_temp = temps_for_week[0]
+    max_temp = temps_for_week[list_length - 1]
+    return min_temp, max_temp    
+    
+#4 Collect temp for entire week!
+temps_for_week_C = [0,0,0,0,0,0,0]
+temps_for_week_F = [0,0,0,0,0,0,0]
+temps_for_week_K = [0,0,0,0,0,0,0] 
+days_of_week = ["Sunday","Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday"]
+
+for x in range(len(days_of_week)):
+    print("Day of Week: " + str(days_of_week[x]) )
+    daily_temp_info = record_temp()
+    #print(daily_temp_info)
+    converted_values = temp_conversion(daily_temp_info)
+    #print(converted_values)
+    #print(type(current_temp))
+    temps_for_week_C[x]= converted_values[0]
+    temps_for_week_F[x]= converted_values[1]
+    temps_for_week_K[x]= converted_values[2]
+
+#5 Calc Averages
+
+average_C = calc_average(temps_for_week_C)
+average_F = calc_average(temps_for_week_F)
+average_K = calc_average(temps_for_week_K)
+
+    
+#6 Min/Max
+min_max_C = find_min_max(temps_for_week_C)
+min_max_F = find_min_max(temps_for_week_F)
+min_max_K = find_min_max(temps_for_week_K)
+
+print(F"The average temperature is {average_C} C with a min and max temp {min_max_C}")
+
+
+
+
+
+
+
+
+
+
+
+
+
