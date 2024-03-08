@@ -17,16 +17,18 @@
 def record_temp():
     daily_temp = int(input("What is the current numeric temp value? "))
     daily_unit = input("What is the current unit of the temp value? ")
-    temp_conversion(daily_temp, daily_unit)
+    return [daily_temp, daily_unit]
     
 #2 Function to convert value to all units required
-def temp_conversion(daily_temp, daily_unit):
+def temp_conversion(daily_temp_info):
+    daily_temp = daily_temp_info[0]
+    daily_unit = daily_temp_info[1]
     if daily_unit.upper() == "C":
-        celcius_conversion(daily_temp)
+        return celcius_conversion(daily_temp)
     if daily_unit.upper() == "F":
-        fahrenheit_conversion(daily_temp)
+        return fahrenheit_conversion(daily_temp)
     if daily_unit.upper() == "K":
-        kelvin_conversion(daily_temp)
+        return kelvin_conversion(daily_temp)
     
 def celcius_conversion(daily_temp):
     print("Converting from C")
@@ -48,38 +50,44 @@ def fahrenheit_conversion(daily_temp):
     return current_temps
 
 def kelvin_conversion(daily_temp):
-    print("Converting from K")
     current_temps = [0,0,0]
     current_temps[2] = daily_temp #K
     current_temps[0] = daily_temp + 273.15 #C
     current_temps[1] = ((daily_temp * (9/5)) + 32) #F
-    print(current_temps)
     return current_temps
     
-    
-#3 Function to inform user of converted values?
-def store_values(temps_for_day):
-    print(temps_for_day)
-    current_daily_values = temps_for_day
-    
-    
+def calc_average(temps_for_week):
+    sum_of_temps = 0
+    list_length = len(temps_for_week)
+    for x in range(list_length):
+        sum_of_temps = sum_of_temps + temps_for_week[x]
+    average = round(float( sum_of_temps / list_length ),1)         
+    return average
     
 #4 Collect temp for entire week!
 temps_for_week_C = [0,0,0,0,0,0,0]
 temps_for_week_F = [0,0,0,0,0,0,0]
 temps_for_week_K = [0,0,0,0,0,0,0] 
 
+
 for x in range(2):
     print("Day " + str(x) )
-    test = record_temp()
-    print(f"test: {test}")
-    print(type(current_temp))
-#     temps_for_week_C[x]= current_temp[0]
-#     temps_for_week_F[x]= current_temp[1]
-#     temps_for_week_K[x]= current_temp[2]
-#     print(temps_for_week_C)
+    daily_temp_info = record_temp()
+    #print(daily_temp_info)
+    converted_values = temp_conversion(daily_temp_info)
+    #print(converted_values)
+    #print(type(current_temp))
+    temps_for_week_C[x]= converted_values[0]
+    temps_for_week_F[x]= converted_values[1]
+    temps_for_week_K[x]= converted_values[2]
 
 #5 Calc Averages
+    averageC = calc_average(temps_for_week_C)
+    print (averageC)
+    averageC = calc_average(temps_for_week_C)
+    print (averageC)
+    averageC = calc_average(temps_for_week_C)
+    print (averageC)
     
 #6 Min/Max
 
