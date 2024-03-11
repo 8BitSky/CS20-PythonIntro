@@ -1,0 +1,59 @@
+#comments
+#data types - floats, int, boolean, string
+#variables
+#lists
+
+#operators - math
+#functions -
+#Def functionName():
+#    do some work!
+
+#conditionals - IF, While, For
+
+#casting - int() , str(), float(),  Functions - print(), round(#,2)
+#methods - .sort() , .upper() , .lower() , .append() ,
+#F-string notation
+
+
+
+
+# name = "Mr. Slater"
+# job = "teacher"
+# years = 14
+# 
+# print(name , "has been a", job , "for" , years, "years") 
+# 
+# print(f"{name} has been a {job} for {years} years.")
+
+
+# 
+# drinks = ["Ice Tea", "Coffee", "Coke"]
+# for drink in drinks:
+#     print(drink)
+# drinks.append("Tea")
+# for drink in drinks:
+#     print(drink)
+
+
+myName = input("what is your name?")
+
+if myName.lower() == "slater":
+    
+    print(myName.upper())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
