@@ -1,0 +1,69 @@
+##############################
+#MadLib Assignment
+#Name
+#March 12 2024
+#
+#Focus: EasyGUI, F-String Formatting, [Lists]
+#
+# Step 1: Create a simple MadLib which takes info
+# from the user to create a short response. (10-15)
+# Step 2: Create a Madlib which asks for multiple
+# values from the user, and uses random input to
+# create the final response.
+###############################
+
+# query = f"SELECT name, age FROM users "\
+#         f"WHERE age > 18 "\
+#         f"ORDER BY name"
+# print(query)
+
+import easygui as easy
+import sys
+
+userQuestions = ["Proper Noun (Persons Name)","Noun","Adjective (Feeling)","Verb","Adjective (Feeling)","Animal","Verb",
+                 "Color","Verb (ending in 'ing')","Adverb (ending in 'ly')","Number","Measure of Time","Color","Animal",
+                 "Number","Silly Word","Noun"]
+
+userInputs = list(range(len(userQuestions)))
+
+Story = f"This weekend I am going camping with {userInputs[0]}. I packed my lantern, sleeping bag, and "\
+        f"{userInputs[1]}. I am so {userInputs[3]} to {userInputs[4]} in a tent. I am {userInputs[5]} we "\
+        f"might see a {userInputs[6]}, they are kind of dangerous. We are going to hike, fish, and {userInputs[7]}. "\
+        f"I have heard that the {userInputs[8]} lake is great for {userInputs[9]}. Then we will "\
+        f"{userInputs[10]} hike through the forest for {userInputs[11]} {userInputs[12]}. If I see a "\
+        f"{userInputs[13]} while hiking, I am going to bring it home as a pet! At night we will tell "\
+        f"{userInputs[14]} {userInputs[15]} stories and roast {userInputs[16]} around the campfire!!"
+
+def activity_intro():
+    msg = f"Please answer the following {len(userQuestions)} questions to complete the MadLib: A Camping We Will Go!"
+    title =  "A Camping We Will Go!"
+    confirm = easy.msgbox(msg, title)
+    return confirm
+
+def get_responses():
+    for x in range(2):
+        currentQuestion = easy.enterbox((userQuestions[x]), "A Camping We Will Go!")
+        print(currentQuestion)
+        userInputs[x] = currentQuestion
+        
+def print_responses():
+    msg = Story
+    title = "A Camping We Will Go!"
+    easy.textbox(msg, title)
+
+def close_madlib():
+    msg = "Would you like to do this again?"
+    title = "Please Confirm",
+    if ccbox(msg,title):
+        pass
+    else:
+        sys.exit(0)
+    
+while True:
+    if activity_intro().upper() == "OK":
+        get_responses()
+    print_responses()
+    close_madlib()
+                           
+    
+
