@@ -1,0 +1,46 @@
+import turtle as t
+import random as r
+
+bob = t.Turtle()
+
+
+def createTarget(ring_count):
+    start_size = (50 + ring_count*20)
+    ring_count = ring_count
+    rings = ""
+    color_order = ["black","white"]
+    if ring_count%2 == 1:
+        color_order = ["white","black"]
+        bob.dot((start_size+3),"black")
+    while ring_count>0:
+        for color in color_order:
+            bob.dot(start_size, color)
+            start_size -= 20
+        ring_count-=2
+    bob.dot(50,"red")
+
+def shoot_arrows(amount,ring_count):
+    amount = amount
+    radius = 25+ring_count*10
+    bob.penup()
+    bob.shape("circle")
+    while amount > 0 :
+        bob.hideturtle()
+        bob.color("blue")
+        bob.goto(r.randint(-radius,radius),r.randint(-radius,radius))
+        bob.showturtle()
+        bob.stamp()
+        amount = amount - 1
+                
+        
+    
+        
+    
+    
+    
+    
+    
+    
+    
+
+
