@@ -5,19 +5,28 @@ race_complete = False
 global spacing
 spacing = 50
 
+t.ht()
+
 bob = t.Turtle()
+bob.ht()
 joe = t.Turtle()
+joe.ht()
 sam = t.Turtle()
+sam.ht()
 jed = t.Turtle()
+jed.ht()
 ben = t.Turtle()
+ben.ht()
 
 judge = t.Turtle()
+judge.ht()
 judge.shape('circle')
 judge.shapesize(0.2, 0.2, 1)
 
 racers = [bob, joe, sam, jed, ben]
 colors = ["red", "blue", "black", "green", "orange"]
 names = ["Bob","Joe","Sam","Jed","Ben"]
+score = [0,0,0,0,0]
 
 def SetupCourse():
     judge.speed(0)
@@ -43,10 +52,11 @@ def SetupCourse():
     judge.penup()
     judge.goto(0,-260)
     judge.write("Racers To The Line!")
-            
+
 def SetupRacers():
     y = 200
     for x in range(len(racers)):
+        racers[x].st()
         racers[x].penup()
         racers[x].color(colors[x])           
         racers[x].setpos(-250,y)
@@ -55,12 +65,12 @@ def SetupRacers():
         racers[x].shapesize(1, 1, 1)
         racers[x].shape("turtle")
         y -=100
-        
+
 def StartRace():
     judge.penup()
     judge.goto(0,-270)
     judge.write("Race!")
-        
+
 def RaceTurtles():
     for racer in racers:
         CheckFinish(racer)
@@ -79,23 +89,32 @@ def DeclareWinner(racer):
     judge.goto((x_cor+spacing),y_cor)
     judge.shape('turtle')
     judge.color("gold")
+    judge.shapesize(0.5, 0.5, 1)
     judge.stamp()
     RaceAgain()
-    
-     
+
+
 def Winner(racer):
-    racer.shapesize(2, 3, 1)
+    print(racer)
+    racer.shapesize(1.5, 1.5, 1)
+    racer.right(360)
+    racer.left(360)
     DeclareWinner(racer)
-    
-    
+
+
 def RaceAgain():
     choice = input("Would you like to race again? YES or NO")
     if choice.upper() == "YES":
         global spacing
-        spacing += 50
+        spacing += 20
         SetupRacers()
     else:
         exit()
+
+#def UpdateScore(currentScores):
+#  score = f"Bob: {}" 
+
+#"Bob","Joe","Sam","Jed","Ben"]
 
 while True:
     t.clear()
@@ -104,5 +123,5 @@ while True:
     StartRace()
     while not race_complete:
         RaceTurtles()
-    
-    
+
+
