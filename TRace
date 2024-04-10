@@ -1,0 +1,108 @@
+import turtle as t, random
+
+finish_line = 200
+race_complete = False
+global spacing
+spacing = 50
+
+bob = t.Turtle()
+joe = t.Turtle()
+sam = t.Turtle()
+jed = t.Turtle()
+ben = t.Turtle()
+
+judge = t.Turtle()
+judge.shape('circle')
+judge.shapesize(0.2, 0.2, 1)
+
+racers = [bob, joe, sam, jed, ben]
+colors = ["red", "blue", "black", "green", "orange"]
+names = ["Bob","Joe","Sam","Jed","Ben"]
+
+def SetupCourse():
+    judge.speed(0)
+    judge.penup()
+    judge.setpos(-200,250)
+    judge.right(90)
+    judge.pendown()
+    judge.goto(-200,-250)
+    judge.write("Start")
+    judge.penup()
+    for x in range(7):
+        judge.setpos(((-200+50)+(x*50)),250)
+        while (judge.ycor() > -250):
+            judge.pendown()
+            judge.forward(10)
+            judge.penup()
+            judge.forward(10)
+    judge.penup()
+    judge.setpos(200,250)
+    judge.pendown()
+    judge.goto(200,-250)
+    judge.write("Finish")
+    judge.penup()
+    judge.goto(0,-260)
+    judge.write("Racers To The Line!")
+            
+def SetupRacers():
+    y = 200
+    for x in range(len(racers)):
+        racers[x].penup()
+        racers[x].color(colors[x])           
+        racers[x].setpos(-250,y)
+        racers[x].write(names[x])
+        racers[x].setpos(-200,y)
+        racers[x].shapesize(1, 1, 1)
+        racers[x].shape("turtle")
+        y -=100
+        
+def StartRace():
+    judge.penup()
+    judge.goto(0,-270)
+    judge.write("Race!")
+        
+def RaceTurtles():
+    for racer in racers:
+        CheckFinish(racer)
+        movement = random.randint(0,20)
+        racer.forward(movement)
+
+def CheckFinish(racer):
+    if racer.xcor() > finish_line:
+        Winner(racer);
+    else:
+        pass
+
+def DeclareWinner(racer):
+    x_cor = racer.xcor()
+    y_cor = racer.ycor()
+    judge.goto((x_cor+spacing),y_cor)
+    judge.shape('turtle')
+    judge.color("gold")
+    judge.stamp()
+    RaceAgain()
+    
+     
+def Winner(racer):
+    racer.shapesize(2, 3, 1)
+    DeclareWinner(racer)
+    
+    
+def RaceAgain():
+    choice = input("Would you like to race again? YES or NO")
+    if choice.upper() == "YES":
+        global spacing
+        spacing += 50
+        SetupRacers()
+    else:
+        exit()
+
+while True:
+    t.clear()
+    SetupCourse()
+    SetupRacers()
+    StartRace()
+    while not race_complete:
+        RaceTurtles()
+    
+    
