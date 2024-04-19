@@ -1,0 +1,152 @@
+##############
+#Turtle - Collect It Game
+#Name
+#Date
+#
+#Task: To create a simple game where the player controls a turtle that can move left and right while trying to collect falling items.
+##############
+
+#####Setup#####
+#Use this section to organize global data
+
+#Import Libraries
+import turtle as t
+import random
+
+#Global Variable
+ht()
+screen = t.Screen()
+
+jeff = t.Turtle() #Sprite
+jeff.penup()
+jeff.goto(0,0)
+bottom = -150
+movement = 10
+leftBound = -150
+rightBound = 150
+food_count = 4
+gravity = 5
+
+#Lists
+food = []
+
+#####Functions#####
+
+##Core Game Functions##
+
+#Create Score
+#Create the score field on the top of the screen
+def setup_score():
+    pass    
+
+#Create Player
+#Create and draw player onto the screen in starting position
+def create_player():
+    jeff.shape("Turtle")
+    jeff.goto(0, bottom )
+    jeff.left(90)
+
+#Move Player Left
+#Move player left in response to arrow key
+def move_left():
+    cur_pos = jeff.xcor()
+    new_pos = check_horizontal_bounds(cur_pos)
+    new_pos -= movement
+    jeff.setx(new_pos)
+
+#Move Player Right
+#Move player right in response to arrow key
+def move_right():
+    cur_pos = jeff.xcor()
+    new_pos = check_horizontal_bounds(cur_pos)
+    new_pos += movement
+    jeff.setx(new_pos)
+
+#Check Player Screen Bounds (Horizontal)
+#Check to see if the player is within the vertical bounds, if not set the player to the bound
+def check_horizontal_bounds(cur_pos):
+    if cur_pos > rightBound :
+        return rightBound
+    if cur_pos < leftBound:
+        return leftBound
+    else:
+        return cur_pos
+
+#Create Collectable
+#Use a for loop to create and store your collectables into a list
+def create_collectables():
+    for x in range (food_count):
+        turtle = t.Turtle()
+        turtle.shape("circle")
+        turtle.color("red")
+        food.append(turtle)
+
+#Move Collectable 
+#Go through your list of collectables and move each item
+def move_collectable():
+    for item in food:
+        cur_pos = item.ycor()
+        item.goto(item.xcor(), (cur_pos - gravity))
+        if check_vertical_bounds(item):
+            item.setx(random.randint(leftBound, rightBound))
+            item.sety(random.randint(250, 750))
+            
+        
+#Return Collectable 
+#Go through your list of collectables and move each item
+def set_collectable_locations():
+    for item in food:
+        item.penup()
+        item.setx(random.randint(leftBound, rightBound))
+        item.sety(random.randint(250, 750))
+
+#Check Collectable Screen Bounds (Vertical)
+#Check to see if a falling item is below vertical bounds, if so move back to the top
+#Must pass the item in as an arguement
+def check_vertical_bounds(item):
+    cur_pos = item.ycor()
+    if cur_pos < (bottom - 20):
+        #lose life here?
+        return True
+        
+#Check Player Catch Collectable
+#Pass in a collectable item from a list and determine if it is in contact/proximity with the player
+#Must pass the item in as an arguement
+def check_collectable(item):
+    pass
+
+#Update Score
+#If contact between collectable and player is made, update global score
+def update_score(points):
+    pass
+
+##Extendable Functions##
+
+#Intro Screen
+def start_screen():
+    pass
+
+#Life Tracker
+def update_lives():
+    pass
+
+#Game Over Screen
+def game_over():
+    pass
+
+
+#####Setup Function Calls#####
+#Use this section to call any core functions that are only called once and help to setup the turtle/game environment
+screen.onkey(move_right , "right")
+screen.onkey(move_left , "left")
+screen.listen()
+create_player()
+create_collectables()
+set_collectable_locations()
+for x in range(500):
+    move_collectable()
+
+#####Core Game Loop#####
+#Use this while loop to create your game loop, define logic and call above functions
+#while True:
+    #pass
